@@ -1,16 +1,12 @@
-# SerenTracker
+# Portables Tracker
 
-Tracks Seren Spirit drops gained via the chat window.
+Tracks Portables from GOTE via the chat window. Test
 
 ## Installation:
 
 Install by copying this either copy pasting the following link in your browser.
 
-alt1://addapp/https://zerogwafa.github.io/SerenTracker/appconfig.json
-
-Or, by going to the following link in the Alt1 Browser
-
-https://zerogwafa.github.io/SerenTracker/
+alt1://addapp/URL HERE
 
 ## Instructions:
 
@@ -26,13 +22,13 @@ https://zerogwafa.github.io/SerenTracker/
 
 ![menu](/readme-assets/ItemHistory.png)
 
-By default, the app will show the item history, or the list of items received from Seren Spirits, in the order of most recent at the top of the list. You can Mouse-Over each entry to see the local time and date when it was acquired.
+By default, the app will show the item history, or the list of items sent to Item banks via GOTE, in the order of most recent at the top of the list. You can Mouse-Over each entry to see the local time and date when it was acquired.
 
-Clicking the header (Where it shows "Seren Item History") will change the display to item totals.
+Clicking the header (Where it shows "Item History") will change the display to item totals.
 
 ![menu](/readme-assets/ItemTotals.png)
 
-This shows the total amount of each item acquired via Seren Spirits.
+This shows the total amount of each item acquired via Portable/GOTE.
 
 ## Settings
 
