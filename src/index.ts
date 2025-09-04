@@ -21,7 +21,7 @@ const itemTotal = document.getElementById("total");
 const appColor = a1lib.mixColor(0, 255, 255);
 const timestampRegex = /\[\d{2}:\d{2}:\d{2}\]/g;
 const reader = new ChatboxReader();
-const appName = "SerenTracker";
+const appName = "PortableTracker";
 
 //check if we are running inside alt1 by checking if the alt1 global exists
 if (window.alt1) {
@@ -38,7 +38,7 @@ if (window.alt1) {
 // Set Chat reader
 reader.readargs = {
 	colors: [
-		a1lib.mixColor(0, 255, 255), //Seren text color
+		a1lib.mixColor(0, 255, 255), //text color
 	],
 };
 
@@ -109,8 +109,8 @@ function readChatbox() {
 		if (isInHistory(chatLine)) {
 			continue;
 		}
-		if (chatLine.indexOf("Seren spirit gifts you") > -1) {
-			let item = chatLine.match(/\[\d+:\d+:\d+\] The Seren spirit gifts you: (\d+ x [A-Za-z\s-&+'()1-4]+)/);
+		if (chatLine.indexOf("You transport to") > -1) {
+			let item = chatLine.match(/\[\d+:\d+:\d+\] You transport to: (\d+ x [A-Za-z\s-&+'()1-4]+)/);
 
 			let getItem = {
 				item: item[1].trim(),
@@ -156,7 +156,7 @@ function showItems() {
 	if (getSaveData("mode") == "total") {
 		listHeader.dataset.show = "history";
 		listHeader.title = "Click to show History";
-		listHeader.innerHTML = "Seren Item Totals";
+		listHeader.innerHTML = "Item Totals";
 		let total = getTotal();
 		Object.keys(total)
 			.sort()
@@ -164,7 +164,7 @@ function showItems() {
 	} else {
 		listHeader.dataset.show = "total";
 		listHeader.title = "Click to show Totals";
-		listHeader.innerHTML = "Seren Item History";
+		listHeader.innerHTML = "Item History";
 		getSaveData("data")
 			.slice()
 			.reverse()
@@ -211,7 +211,7 @@ exportButton.addEventListener("click", function () {
 		Object.keys(total)
 			.sort()
 			.forEach((item) => (str = `${str}${total[item]},${item}\n`));
-		fileName = "serenTotalExport.csv";
+		fileName = "PorterTotalExport.csv";
 
 		//Otherwise, export list by item and time received.
 	} else {
@@ -219,7 +219,7 @@ exportButton.addEventListener("click", function () {
 		getSaveData("data").forEach((item) => {
 			str = `${str}${item.item},${new Date(item.time).toLocaleString()}\n`;
 		});
-		fileName = "serenHistoryExport.csv";
+		fileName = "PorterHistoryExport.csv";
 	}
 	var blob = new Blob([str], { type: "text/csv;charset=utf-8;" });
 	var link = document.createElement("a");
@@ -256,42 +256,30 @@ function showSelectedChat(chat) {
 	} catch {}
 }
 
-/*
-TODO:
-- New Save Data format - DONE
-	- appName - Object that contains all specific values for app
-		- data - Tracked Items
-		- chat - Selected Chat Window
-		- total - Rename to mode - Selected data display mode.
-- Convert existing data into new format - DONE
-- Continue to tidy code, create pure functions, etc.
-- Look into only keeping the relavent SerenSpirit line in chatHistory. - DONE
-*/
-
 (function () {
 	// Fresh install, initialize Save Data
-	if(!localStorage.getItem("serenData") &&
-	!localStorage.getItem("serenTotal") &&
-	!localStorage.getItem("serenChat") &&
+	if(!localStorage.getItem("PorterData") &&
+	!localStorage.getItem("PorterTotal") &&
+	!localStorage.getItem("PorterChat") &&
 	!localStorage.getItem(appName)
 ) {
 	localStorage.setItem(appName, JSON.stringify({ chat: 0, data: [], mode: "history" }));
 	location.reload();
 }
 
-	// Convert old localStorage save data to new format.  Keep serenData entry just in case.
-	if (localStorage.getItem("serenData")) {
-		updateSaveData({ data: JSON.parse(localStorage.getItem("serenData")) });
-		localStorage.setItem("serenDataBackup", localStorage.getItem("serenData"));
-		localStorage.removeItem("serenData");
+	// Convert old localStorage save data to new format.  Keep PorterData entry just in case.
+	if (localStorage.getItem("PorterData")) {
+		updateSaveData({ data: JSON.parse(localStorage.getItem("PorterData")) });
+		localStorage.setItem("PorterDataBackup", localStorage.getItem("PorterData"));
+		localStorage.removeItem("PorterData");
 	}
-	if (localStorage.getItem("serenTotal")) {
-		updateSaveData({ mode: localStorage.getItem("serenTotal") });
-		localStorage.removeItem("serenTotal");
+	if (localStorage.getItem("PorterTotal")) {
+		updateSaveData({ mode: localStorage.getItem("PorterTotal") });
+		localStorage.removeItem("PorterTotal");
 	}
-	if (localStorage.getItem("serenChat")) {
-		updateSaveData({ chat: localStorage.getItem("serenChat") });
-		localStorage.removeItem("serenChat");
+	if (localStorage.getItem("PorterChat")) {
+		updateSaveData({ chat: localStorage.getItem("PorterChat") });
+		localStorage.removeItem("PorterChat");
 	}
 })();
 
@@ -303,7 +291,7 @@ function updateSaveData(...dataset) {
 		// Data property exists, push to array
 		if (name == "data") {
 			// If data exists, append to array
-			if (lsData[name] && value != localStorage.getItem("serenData")) {
+			if (lsData[name] && value != localStorage.getItem("PorterData")) {
 				lsData[name].push(value);
 				continue;
 			}

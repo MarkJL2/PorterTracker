@@ -1,6 +1,6 @@
 {
-  "appName": "SerenTracker",
-  "description": "Tracks Seren Spirit Drops as they appear in the chat box.",
+  "appName": "PorterTracker",
+  "description": "Tracks items sent to relevant banks/storage via GOTE as they appear in the chat box.",
   "appUrl": "./index.html",
   "configUrl": "./appconfig.json",
   "iconUrl": "./icon.png",
