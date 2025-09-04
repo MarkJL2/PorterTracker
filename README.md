@@ -20,19 +20,15 @@ alt1://addapp/URL HERE
 
 ## Main Window
 
-![menu](/readme-assets/ItemHistory.png)
 
 By default, the app will show the item history, or the list of items sent to Item banks via GOTE, in the order of most recent at the top of the list. You can Mouse-Over each entry to see the local time and date when it was acquired.
 
 Clicking the header (Where it shows "Item History") will change the display to item totals.
 
-![menu](/readme-assets/ItemTotals.png)
-
 This shows the total amount of each item acquired via Portable/GOTE.
 
 ## Settings
 
-![menu](/readme-assets/menu.png)
 
 ### Select Chat
 
